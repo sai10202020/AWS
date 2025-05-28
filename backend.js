@@ -1,13 +1,9 @@
-// backend.js
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-
-
-
 
 const multer = require('multer');
 const { v4: uuidv4 } = require('uuid');
@@ -21,7 +17,7 @@ const AWS = require('aws-sdk');
 AWS.config.update({
     region: 'ap-south-1', // IMPORTANT: This region must match where your DynamoDB tables are located.
     accessKeyId: 'AKIAVEP3EDM5K3LA5J47',
-    secretAccessKey: 'YfIszgolrWKUglxC6Q85HSb3V0qhDsa00yv6jcIP'
+    secretAccessKey: 'YfIszgolrWKUglxC6Q85HS3V0qhDsa00yv6jcIP' // Please double-check your secretAccessKey, the last character was 'P' previously.
 });
 
 // Create a DynamoDB DocumentClient.
@@ -38,8 +34,9 @@ app.use(cors({
         'http://localhost:3000',
         'http://localhost:5000',
         // Add your actual deployed frontend URL(s) here:
-        // 'https://your-frontend-app-domain.com',
-        // 'http://your-s3-website-bucket-name.s3-website-ap-south-1.amazonaws.com'
+        // 'https://your-frontend-app-domain.com', // Example for a custom domain with HTTPS
+        // 'http://your-s3-website-bucket-name.s3-website-ap-south-1.amazonaws.com', // Example if frontend is on S3 static hosting
+        'http://13.203.215.207:5000' // <--- THIS IS THE CRITICAL ADDITION FOR YOUR DEPLOYED FRONTEND
     ]
 }));
 
